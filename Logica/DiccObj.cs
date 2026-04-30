@@ -30,3 +30,17 @@ foreach (var par in diccionario)
 
 
 */
+
+
+// otra forma de imprimir 
+/*
+La forma "Moderna" (Deconstrucción)
+A partir de versiones recientes de C#, puedes "desarmar" el par directamente en el foreach. Es la forma más limpia y parecida a como se hace en lenguajes como Python.
+
+C#
+foreach (var (nombre, juego) in coleccion)
+{
+    // 'nombre' ya es el string, 'juego' ya es el objeto
+    Console.WriteLine($"{nombre} es un juego de {juego.Categoria}");
+}
+*/
