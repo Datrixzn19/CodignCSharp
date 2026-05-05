@@ -55,30 +55,15 @@ public class GestorConexiones
 
 
 /*
-El Reto: Gestor de Conexiones Oracle
-Debes crear una clase llamada ConexionOracle que simule la configuración para conectarse a una base de datos. Este ejercicio evalúa los 4 pilares de la Fase 1.
-
-Requerimientos de la Clase:
-Propiedades (Encapsulamiento y Validación):
-
-Host: Debe ser una propiedad de inicialización obligatoria (init), representando la dirección del servidor (ej. "192.168.1.10").
-
-Puerto: Usa un campo de respaldo (_puerto). En el bloque set, valida que el número esté entre 1 y 65535. Si el usuario ingresa un valor fuera de ese rango, asígnale el puerto por defecto de Oracle: 1521.
-
-CadenaConexion: Propiedad calculada (solo lectura con =>) que devuelva un string uniendo los datos, por ejemplo: "Data Source=//[Host]:[Puerto];".
+ using GestorConexionesOracle.POO;
 
 
+var Gestor = new GestorConexiones("192.168.0.0.1", 223);
+Gestor.Conectar();
+Gestor.Conectar(22);
+Console.WriteLine("==========================");
 
-
-Constructores (Obligatoriedad y Encadenamiento):
-
-Crea un constructor principal que reciba host y puerto. Asegúrate de asignar los parámetros a las Propiedades para que la validación del puerto se ejecute.
-
-Crea un segundo constructor que reciba solo el host. Utiliza this(...) para encadenarlo al constructor principal, enviándole el host y el puerto por defecto 1521.
-
-Sobrecarga de Métodos:
-
-Crea un método llamado Conectar() que no reciba parámetros. Debe imprimir en consola: "Intentando conexión a: [CadenaConexion]".
-
-Crea una sobrecarga del método Conectar(int timeout). Debe imprimir: "Intentando conexión a: [CadenaConexion] con tiempo de espera de [timeout] segundos".
+GestorConexiones Gestor1 = new GestorConexiones("192.168.192.0.1");
+Gestor1.Conectar();
+Gestor1.Conectar(11);
 */
