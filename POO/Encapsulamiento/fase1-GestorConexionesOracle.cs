@@ -37,8 +37,7 @@ public class GestorConexiones
         this.Host = host;
         this.Puerto = puerto;
     }
-    public GestorConexiones(string host) : this(host, 1521){} // esto es innecesario? ya hago la validacion en Puerto (pd: ya vi que si esto lo quito y no paso puerto el programa no corre asi que masomenos veo para que puede servir)
-
+    public GestorConexiones(string host) : this(host, 1521){} 
 
     //sobrecarga de metodos
     public void Conectar()
