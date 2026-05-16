@@ -27,7 +27,7 @@ public class RifleAsalto : ArmaBase
     public RifleAsalto(string nombre, int municion) : base(nombre, municion){}//hacemos el contructor igual que siempre al heredar 
 
 
-    public override void Disparar()
+    public override void Disparar()//ahora a los metodos ya les agregamos su propio contenido, se usa override porque lo estamos sobreescribiendo
     {
         Console.WriteLine($"[Ráfaga] ¡Pum pum pum! {Nombre} vaciando el cargador.");
     }
