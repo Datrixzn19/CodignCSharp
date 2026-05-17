@@ -9,13 +9,14 @@ using procesamientoDePagos.POO;
 
 List<MetodoPago> pagos = new List<MetodoPago>
 {
-    new PagoTarjeta("david", 443.01m),
-    new PagoPayPal("david", 443.01m),
+    new PagoTarjeta("david tarjeta", 443.01m),
+    new PagoPayPal("david paypal", 33.01m),
 };
 
 
 foreach(var p in pagos)
 {
     p.ProcesarTransaccion();
+    p.GenerarRecibo();
     Console.WriteLine("--------");
 }
