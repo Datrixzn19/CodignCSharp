@@ -15,8 +15,8 @@ public abstract class ArmaBase
     {
         Console.WriteLine($"[Sistema] {Nombre} recargada. Balas listas: {Municion}");
     }
-    //los metodos abstractos no tienen cuerpo por ahora, proveen una plantilla a las hijas, no usan llaves {}
-    public abstract void Disparar();
+    //los metodos abstractos no tienen cuerpo por ahora, proveen una plantilla a las hijas, no usan llaves {} ahora
+    public abstract void Disparar();//abstract aqui es para obligar al hijo a sobreescribirla
 }
 
 //  Clase 1 que hereda que la clase abstracta
@@ -33,3 +33,19 @@ public class RifleAsalto : ArmaBase
     }
 }
 
+/*
+using SistemaArmamento.Logica;
+
+
+List<ArmaBase> armas = new List<ArmaBase>
+{
+    new RifleAsalto("ak", 11),
+    //new ArmaBase(), las clases abstractas no se pueden istanciar
+};
+
+foreach (var item in armas)
+{
+    item.Disparar();
+    item.Recargar();
+}
+*/
