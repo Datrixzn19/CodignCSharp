@@ -3,7 +3,7 @@ namespace GuardarNotas.Logica;
 
 public interface IGuardadorNotas//interfaz, declaramos los metodos, no tienen contenido ni llaves
 {
-    void GuardarNota(string titulo, string contenido);
+    void GuardarNota(string titulo, string contenido);//todo lo que firme este contrato debe retonar el valor(aqui no porque es void) y recibir los parametros definidos
 }
 
 public class GuardadorLocal : IGuardadorNotas
