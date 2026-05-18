@@ -11,32 +11,60 @@ Vas a estructurar el motor de asignación de contraseñas para una aplicación d
 Requerimientos:
 
 La Interfaz (IGeneradorClaves):
-
 Define un método que retorne un string llamado Generar().
 
 Las Implementaciones:
-
 Clase GeneradorPinBasico: Implementa la interfaz. Su método Generar() debe retornar simplemente "1234".
 
 Clase GeneradorTokenBiometrico: Implementa la interfaz. Su método Generar() debe retornar un texto simulado como "Token_Huella_X98P".
 
 La Clase Principal Desacoplada (GestorBoveda):
-
 Crea una variable privada y de solo lectura del tipo de la interfaz.
 
 Crea un constructor que reciba la interfaz y asigne el valor a la variable privada (esto es la inyección de la dependencia).
 
 Crea un método void ProtegerArchivo(string nombreArchivo). Este método debe usar la variable privada para llamar a Generar() y luego imprimir: "[BioVault] El archivo '{nombreArchivo}' fue asegurado con la credencial: {credencialGenerada}".
-
-El Ejecutor (Program.cs):
-
-Crea una instancia de GeneradorPinBasico.
-
-Crea una instancia de GestorBoveda, inyectándole por constructor el generador básico. Llama a ProtegerArchivo("ListaDeCompras.txt").
-
-Crea una instancia de GeneradorTokenBiometrico.
-
-Crea una nueva instancia de GestorBoveda, inyectándole por constructor el generador biométrico. Llama a ProtegerArchivo("FotosPrivadas.zip").
-
-Escribe el código estructurando las piezas y haciendo la inyección en el punto de entrada.
 */
+
+
+namespace GeneradorClaves.POO;
+public interface IGeneradorClaves
+{
+    //no es necesario poner public porque las interfaces deberian ser publicas
+    string Generar();
+}
+
+//primera implementacion de la interfaz
+public class GeneradorPinBasico : IGeneradorClaves
+{
+    public string Generar()
+    {
+        return "1234";
+    }
+}
+
+//segunda implementacion 
+public class GeneradorTokenBiometricoInterf : IGeneradorClaves
+{
+    public string Generar() => "Token_Huella_X98P";//probando esta forma acortada del return 
+}
+
+
+//Clase principal DESCOPLADA
+
+public class GestorBoveda
+{
+    private readonly IGeneradorClaves _a;//perdon puse este nombre porque no entendia bien lo que hacia
+
+    public GestorBoveda(IGeneradorClaves a)
+    {
+        _a = a;
+    }
+    public void ProtegerArchivo(string nombreArchivo)
+    {
+        string g = _a.Generar();
+        Console.WriteLine($"[BioVault] El archivo '{nombreArchivo}' fue asegurado con la credencial: {g}");
+    }
+
+}
+
