@@ -1,7 +1,9 @@
+namespace MotorSincronizacion.POO;
+public interface ISincronizador
+{
+    void Sincronizar(string datos);
+}
 /*
-private readonly IGeneradorClaves _generador;
-    ```
-    La razón es pura legibilidad: si tu clase tiene 200 líneas de código y llamas a `_generador.Generar()`, inmediatamente sabes qué está haciendo esa línea sin tener que subir a buscar la declaración de la variable.
 
 ### Reto: Motor de Sincronización
 
@@ -21,9 +23,8 @@ Para dominar la inyección de dependencias, vas a estructurar el sistema que sub
     *   Crea el constructor para inyectar la dependencia.
     *   Crea un método `void EjecutarCopiaSeguridad(string datosBoveda)`. Este método debe usar la dependencia inyectada para llamar a `Sincronizar(datosBoveda)`.
 
-4.  **El Ejecutor (`Program.cs`):**
-    *   Instancia el sincronizador de SQLite y pásalo a un nuevo `MotorRespaldo`. Ejecuta la copia con el texto `"Notas_Cifradas_V1"`.
-    *   Instancia el sincronizador de Drive y pásalo a un *nuevo* `MotorRespaldo`. Ejecuta la copia con el texto `"Notas_Cifradas_V1"`.
+
 
 Escribe la estructura aplicando las convenciones de nombres.
 */
+
