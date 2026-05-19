@@ -1,5 +1,9 @@
-﻿/*
-4.  **El Ejecutor (`Program.cs`):**
-    *   Instancia el sincronizador de SQLite y pásalo a un nuevo `MotorRespaldo`. Ejecuta la copia con el texto `"Notas_Cifradas_V1"`.
-    *   Instancia el sincronizador de Drive y pásalo a un *nuevo* `MotorRespaldo`. Ejecuta la copia con el texto `"Notas_Cifradas_V1"`.
-*/
+﻿using MotorSincronizacion.POO;
+
+ISincronizador sinc = new SincronizadorSQLite();
+var sincronizador = new MotorRespaldo(sinc);
+sincronizador.EjecutarCopiaSeguridad("Notas_Cifradas_V1");
+
+ISincronizador sinc1 = new SincronizadorDrive();
+var sincronizador1 = new MotorRespaldo(sinc1);
+sincronizador1.EjecutarCopiaSeguridad("Notas_Cifradas_V1");
