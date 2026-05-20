@@ -1,21 +1,46 @@
-/*
-Reto: Habitación Inteligente (Smart Room)
-Requerimientos:
-
-Contrato 1 (IIluminacion):
-Define un método void EncenderLuces();
-Crea una clase LucesLed que implemente esta interfaz y al ejecutar el método imprima: "[Iluminación] Encendiendo paneles LED en tono cálido."
-
-Contrato 2 (IClimatizacion):
-Define un método void AjustarTemperatura(int grados);
-Crea una clase AireAcondicionado que implemente esta interfaz y al ejecutar el método imprima: "[Clima] Ajustando el aire a {grados}°C."
-
-La Clase Compuesta (HabitacionInteligente):
-Debe tener dos variables privadas y de solo lectura (readonly), una para cada interfaz (ej. _iluminacion y _climatizacion).
-Un constructor que exija ambas interfaces y las asigne a las variables.
-Un método void ActivarModoNoche(). Este método debe usar tus dependencias inyectadas para:
-Encender las luces.
-Ajustar la temperatura a 22 grados.
+namespace SmartHome.POO;
+public interface IIluminacion
+{
+    void EncenderLuces();
+    
+}
+public class LucesLed : IIluminacion
+{
+    public void EncenderLuces()
+    {
+        Console.WriteLine("[Iluminación] Encendiendo paneles LED en tono cálido.");
+    }
+}
 
 
-*/
+
+public interface IClimatizacion
+{
+    void AjustarTemperatura(int grados);
+}
+public class AireAcondicionado : IClimatizacion
+{
+    public void AjustarTemperatura(int grados)
+    {
+        Console.WriteLine($"[Clima] Ajustando el aire a {grados}°C.");
+    }
+}
+
+
+//Clase compuesta
+
+public class HabitacionInteligente
+{
+    private readonly IIluminacion _iluminacion;
+    private readonly IClimatizacion _climatizacion;
+    public HabitacionInteligente(IClimatizacion climatizacion, IIluminacion iluminacion)
+    {
+        _climatizacion = climatizacion;
+        _iluminacion = iluminacion;
+    }
+    public void ActivarModoNoche()
+    {
+        _iluminacion.EncenderLuces();
+        _climatizacion.AjustarTemperatura(22);
+    }
+}
