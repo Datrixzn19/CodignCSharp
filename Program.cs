@@ -1,9 +1,9 @@
-﻿using MotorSincronizacion.POO;
+﻿
 
-ISincronizador sinc = new SincronizadorSQLite();
-var sincronizador = new MotorRespaldo(sinc);
-sincronizador.EjecutarCopiaSeguridad("Notas_Cifradas_V1");
-
-ISincronizador sinc1 = new SincronizadorDrive();
-var sincronizador1 = new MotorRespaldo(sinc1);
-sincronizador1.EjecutarCopiaSeguridad("Notas_Cifradas_V1");
+/*
+En tu ejecutor (Program.cs):
+Instancia tus dos herramientas de hardware (LucesLed y AireAcondicionado).
+Instancia tu HabitacionInteligente, pasándole (inyectándole) ambas piezas de hardware por el constructor.
+Llama al método ActivarModoNoche() de tu habitación.
+Escribe el código estructurando las piezas, tal como lo harías en tu editor, y envíamelo para revisarlo. 
+*/
