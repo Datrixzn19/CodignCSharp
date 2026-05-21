@@ -1,3 +1,5 @@
+//una clase debe heredar de otra cuando "es un", ademas no existe herencia multiple por lo que podemos optar por la composicion, . En lugar de heredar comportamientos, construyes tu clase principal ensamblando "piezas" a través de interfaces. Es exactamente lo que se hace con la inyeccion de dependencias, pero mas avanzado: inyectar múltiples comportamientos a la vez.
+
 namespace SmartHome.POO;
 public interface IIluminacion
 {
@@ -44,3 +46,15 @@ public class HabitacionInteligente
         _climatizacion.AjustarTemperatura(22);
     }
 }
+
+
+/*
+using SmartHome.POO;
+IClimatizacion clima = new AireAcondicionado();
+IIluminacion luces = new LucesLed();
+
+
+var hogarInteligente = new HabitacionInteligente(clima, luces);
+hogarInteligente.ActivarModoNoche();
+
+*/
