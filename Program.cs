@@ -1,89 +1,54 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-    
-
-
-// BASE DE DATOS SIMULADA
-
-List<VideojuegoLinq> catalogo = new List<VideojuegoLinq>
+﻿List<Producto> inventario = new List<Producto>
 {
-    new VideojuegoLinq { Titulo = "Zelda: Breath of the Wild", Anio = 2017, Calificacion = 9.8, EsMultijugador = false },
-    new VideojuegoLinq { Titulo = "Minecraft", Anio = 2011, Calificacion = 9.5, EsMultijugador = true },
-    new VideojuegoLinq { Titulo = "Cyberpunk 2077", Anio = 2020, Calificacion = 7.5, EsMultijugador = false },
-    new VideojuegoLinq { Titulo = "Mario Kart 8", Anio = 2014, Calificacion = 8.9, EsMultijugador = true },
-    new VideojuegoLinq { Titulo = "Tetris", Anio = 1984, Calificacion = 9.0, EsMultijugador = false }
+    new Producto { Nombre = "Laptop", Precio = 1200, Categoria = "Electrónica" },
+    new Producto { Nombre = "Ratón", Precio = 25, Categoria = "Electrónica" },
+    new Producto { Nombre = "Escritorio", Precio = 300, Categoria = "Muebles" },
+    new Producto { Nombre = "Silla", Precio = 150, Categoria = "Muebles" }
 };
 
+Console.WriteLine("1. Solicitando el catálogo a la base de datos...");
 
-//RETOS LINQ
-//Seleccionar elementos 
-Console.WriteLine("\n Trear solo nombres con Select");
-List<string> seleccionar = catalogo.Select(p => p.Titulo).ToList();
-Console.WriteLine(string.Join(", ", seleccionar)); // imprime todos los elementnos eparados por comas, se usa join o sino un foreach
+// El 'await' es la campana del chef. 
+// Le dice a C#: "Pausa esta línea aquí, ve a hacer otras cosas si quieres, y cuando 
+// TerminarDescargaAsync termine, guarda el resultado en 'mensaje' y continúa".
+string mensaje = await DescargarDatosAsync();
+
+Console.WriteLine($"3. Resultado: {mensaje}");
 
 
 
-// Guardar en una lista los juegos con Calificacion MAYOR a 8.5
-Console.WriteLine("\n Traer mejores calificaciones con Where");
-List<VideojuegoLinq> mayorCalificaciones = catalogo.Where(p => p.Calificacion > 8.5).ToList();
-foreach (var item in mayorCalificaciones)
+// MÉTODO ASÍNCRONO SIMULADO
+// La palabra 'async' avisa que usaremos 'await' adentro.
+// 'Task<string>' significa que devolverá un texto, pero en el futuro (es una promesa).
+static async Task<string> DescargarDatosAsync()
 {
-    Console.WriteLine($"{item.Titulo} - {item.Calificacion}");
+    Console.WriteLine("2. (Servidor procesando... esto tomará 3 segundos)");
+    
+    // Simulamos una demora de red de 3000 milisegundos 
+    await Task.Delay(3000); 
+    
+    return "¡Los videojuegos han sido descargados con éxito!";
 }
 
 
 
-// Ordenar los juegos por 'Anio' (del más viejo al más nuevo)
-Console.WriteLine("\n Ordenar resultados de busqueda con OrderBy");
-List<VideojuegoLinq> ordenadosPorAnio = catalogo.OrderByDescending(p => p.Anio).ToList(); //para hacer al revez se usa OrderByDescending
-foreach (var item in ordenadosPorAnio)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public class Producto
 {
-    Console.WriteLine($"{item.Titulo} - {item.Anio}");
+    public string Nombre { get; set; }
+    public int Precio { get; set; }
+    public string Categoria { get; set; }
 }
-
-
-
-// Buscar el juego que se llame exactamente "Minecraft"
-//FoDft no devuelve una lista, devuele lo que encontró o null, por eso el tipo de dato es la clase
-Console.WriteLine("\nBuscar primer elemento con FirstOrDefault");
-VideojuegoLinq? primerEncontrado = catalogo.FirstOrDefault(p => p.Titulo=="Minecraft");
-if (primerEncontrado != null)
-{
-    Console.WriteLine($"Si se encontró {primerEncontrado.Titulo}");
-}
-else
-{
-    Console.WriteLine("No existe ese elemento");
-}
-
-
-
-// Busqueda combinada, categoria y multijador
-Console.WriteLine("\n Doble busqueda, select + where");
-var dobleFiltro = catalogo.Where(p => p.EsMultijugador ==true)
-.Select(p => p.Titulo);//no supe como hacerlo con el tipo objeto, no sabia donde va el tolist
-foreach (var item in dobleFiltro)
-{
-    Console.WriteLine(item);
-}
-
-
-// Saber la cantidad exacta (int) de juegos multijugador.
-Console.WriteLine("\n Contar juegos multijugador con Count");
-var contar = catalogo.Count(p=> p.EsMultijugador==true);
-Console.WriteLine($"La cantidad de juegos multiplayer es de {contar}");
-
-
-// DECLARACIÓN DE CLASE
-
-public class VideojuegoLinq
-{
-    public string Titulo { get; set; }
-    public int Anio { get; set; }
-    public double Calificacion { get; set; }
-    public bool EsMultijugador { get; set; }
-}
-
-

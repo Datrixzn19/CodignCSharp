@@ -52,7 +52,7 @@ int cantidadRpg = listaVideojuego.Count(j => j.Categoria == Categorias.RPG);
 Un recordatorio importante:
 Casi siempre, después de un .Where(), querrás poner un .ToList() al final para que los resultados se guarden en una lista real que puedas recorrer después.
 
-¿Listo para aplicarlos a tu código de colección? ¡Te va a quedar un resumen de inventario súper potente!
+
 
                                                     //RETURN
 1. El equipo de "Las Listas" (Devuelven una colección)
