@@ -18,11 +18,16 @@ List<VideojuegoLinq> catalogo = new List<VideojuegoLinq>
 
 
 //RETOS LINQ
+//Seleccionar elementos 
+Console.WriteLine("\n Trear solo nombres con Select");
+List<string> seleccionar = catalogo.Select(p => p.Titulo).ToList();
+Console.WriteLine(string.Join(", ", seleccionar)); // imprime todos los elementnos eparados por comas, se usa join o sino un foreach
+
 
 
 // Guardar en una lista los juegos con Calificacion MAYOR a 8.5
+Console.WriteLine("\n Traer mejores calificaciones con Where");
 List<VideojuegoLinq> mayorCalificaciones = catalogo.Where(p => p.Calificacion > 8.5).ToList();
-Console.WriteLine("Mejores calificaciones de videojuegos");
 foreach (var item in mayorCalificaciones)
 {
     Console.WriteLine($"{item.Titulo} - {item.Calificacion}");
@@ -31,8 +36,8 @@ foreach (var item in mayorCalificaciones)
 
 
 // Ordenar los juegos por 'Anio' (del más viejo al más nuevo)
+Console.WriteLine("\n Ordenar resultados de busqueda con OrderBy");
 List<VideojuegoLinq> ordenadosPorAnio = catalogo.OrderByDescending(p => p.Anio).ToList(); //para hacer al revez se usa OrderByDescending
-System.Console.WriteLine("Ordenados por Anio");
 foreach (var item in ordenadosPorAnio)
 {
     Console.WriteLine($"{item.Titulo} - {item.Anio}");
@@ -42,6 +47,7 @@ foreach (var item in ordenadosPorAnio)
 
 // Buscar el juego que se llame exactamente "Minecraft"
 //FoDft no devuelve una lista, devuele lo que encontró o null, por eso el tipo de dato es la clase
+Console.WriteLine("\nBuscar primer elemento con FirstOrDefault");
 VideojuegoLinq? primerEncontrado = catalogo.FirstOrDefault(p => p.Titulo=="Minecraft");
 if (primerEncontrado != null)
 {
@@ -54,18 +60,20 @@ else
 
 
 
+// Busqueda combinada, categoria y multijador
+Console.WriteLine("\n Doble busqueda, select + where");
+var dobleFiltro = catalogo.Where(p => p.EsMultijugador ==true)
+.Select(p => p.Titulo);//no supe como hacerlo con el tipo objeto, no sabia donde va el tolist
+foreach (var item in dobleFiltro)
+{
+    Console.WriteLine(item);
+}
 
 
-
-
-
-
-// Reto 4 (Combinado): Usa .Where() para buscar los juegos multijugador y luego .Select() para extraer solo sus Títulos.
-// Escribe tu código aquí...
-
-// Reto 5 (Bonus): Adivina o busca cómo usar el método .Count() para saber la cantidad exacta (int) de juegos multijugador.
-// Escribe tu código aquí...
-
+// Saber la cantidad exacta (int) de juegos multijugador.
+Console.WriteLine("\n Contar juegos multijugador con Count");
+var contar = catalogo.Count(p=> p.EsMultijugador==true);
+Console.WriteLine($"La cantidad de juegos multiplayer es de {contar}");
 
 
 // DECLARACIÓN DE CLASE
