@@ -21,12 +21,35 @@ List<VideojuegoLinq> catalogo = new List<VideojuegoLinq>
 
 
 // Guardar en una lista los juegos con Calificacion MAYOR a 8.5
-
 List<VideojuegoLinq> mayorCalificaciones = catalogo.Where(p => p.Calificacion > 8.5).ToList();
 Console.WriteLine("Mejores calificaciones de videojuegos");
 foreach (var item in mayorCalificaciones)
 {
-    Console.WriteLine($"{item.Titulo} {item.Calificacion}");
+    Console.WriteLine($"{item.Titulo} - {item.Calificacion}");
+}
+
+
+
+// Ordenar los juegos por 'Anio' (del más viejo al más nuevo)
+List<VideojuegoLinq> ordenadosPorAnio = catalogo.OrderByDescending(p => p.Anio).ToList(); //para hacer al revez se usa OrderByDescending
+System.Console.WriteLine("Ordenados por Anio");
+foreach (var item in ordenadosPorAnio)
+{
+    Console.WriteLine($"{item.Titulo} - {item.Anio}");
+}
+
+
+
+// Buscar el juego que se llame exactamente "Minecraft"
+//FoDft no devuelve una lista, devuele lo que encontró o null, por eso el tipo de dato es la clase
+VideojuegoLinq? primerEncontrado = catalogo.FirstOrDefault(p => p.Titulo=="Minecraft");
+if (primerEncontrado != null)
+{
+    Console.WriteLine($"Si se encontró {primerEncontrado.Titulo}");
+}
+else
+{
+    Console.WriteLine("No existe ese elemento");
 }
 
 
@@ -36,17 +59,6 @@ foreach (var item in mayorCalificaciones)
 
 
 
-
-
-
-
-
-
-// Reto 2: Usa .OrderBy() para ordenar los juegos por 'Anio' (del más viejo al más nuevo)
-// Escribe tu código aquí...
-
-// Reto 3: Usa .FirstOrDefault() para buscar el juego que se llame exactamente "Minecraft"
-// Escribe tu código aquí...
 
 // Reto 4 (Combinado): Usa .Where() para buscar los juegos multijugador y luego .Select() para extraer solo sus Títulos.
 // Escribe tu código aquí...
