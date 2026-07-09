@@ -19,6 +19,7 @@ static async Task LavarRopaAsync()
 {
     Console.WriteLine("La lavadora arrancó");
     await Task.Delay(4000);
-    Console.WriteLine("La ropa esta limpia");
+    Console.WriteLine("La lavadora terminó");
 } 
+
 */
